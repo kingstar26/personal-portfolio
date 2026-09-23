@@ -110,7 +110,7 @@ export function About() {
             <div className="space-y-5 pt-3 text-[1.05rem] leading-8 text-slate-200/90">
               <MotionReveal delay={0.2} direction="up">
                 <p>
-                  I&apos;m <span className="font-semibold text-white">Hezron Njenga</span>, a Computer Science student and Software Developer passionate about designing and developing practical digital systems that solve real-world problems.
+                  I&apos;m <span className="font-semibold text-white"></span>a Computer Science student and Software Developer passionate about designing and developing practical digital systems that solve real-world problems.
                 </p>
               </MotionReveal>
 
@@ -130,7 +130,7 @@ export function About() {
         </div>
 
         <MotionReveal delay={0.16} direction="up">
-          <h3 className="mt-10 text-center font-display text-2xl sm:text-3xl font-bold italic text-white">
+          <h3 id="experience" className="mt-10 scroll-mt-32 text-center font-display text-2xl sm:text-3xl font-bold italic text-white">
             Here is my work history:
           </h3>
         </MotionReveal>

@@ -13,6 +13,12 @@ const NAV_ITEMS: NavigationItem[] = [
   { label: 'Contact', href: '#contact' },
 ]
 
+const MOBILE_NAV_ITEMS: NavigationItem[] = [
+  ...NAV_ITEMS.slice(0, 2),
+  { label: 'Experience', href: '#experience' },
+  ...NAV_ITEMS.slice(2),
+]
+
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -43,21 +49,30 @@ export function Navbar() {
   // Handle clicking nav link
   const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     event.preventDefault()
-    setMobileMenuOpen(false)
     const sectionId = href.replace('#', '')
     setActiveSection(sectionId)
     window.history.pushState(null, '', href)
 
-    const target = document.getElementById(sectionId)
-    if (!target) return
+    const scrollToTarget = () => {
+      const target = document.getElementById(sectionId)
+      if (!target) return
 
-    const headerHeight = document.querySelector('header')?.getBoundingClientRect().height ?? 0
-    const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16
+      const headerHeight = document.querySelector('header')?.getBoundingClientRect().height ?? 0
+      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight - 16
 
-    window.scrollTo({
-      top: Math.max(0, targetTop),
-      behavior: 'smooth',
-    })
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: 'smooth',
+      })
+    }
+
+    if (mobileMenuOpen) {
+      setMobileMenuOpen(false)
+      window.setTimeout(scrollToTarget, 260)
+      return
+    }
+
+    scrollToTarget()
   }
 
   return (
@@ -167,7 +182,7 @@ export function Navbar() {
             className="lg:hidden overflow-hidden bg-[#0F172A]/98 backdrop-blur-xl border-b border-slate-800 px-4 pt-3 pb-6 shadow-2xl"
           >
             <nav className="flex flex-col gap-1 mb-6">
-              {NAV_ITEMS.map((item) => {
+              {MOBILE_NAV_ITEMS.map((item) => {
                 const isActive = activeSection === item.href.replace('#', '')
                 return (
                   <a
