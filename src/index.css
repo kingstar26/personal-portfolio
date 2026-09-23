@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --color-slate-base: #161F2E;
+  --color-slate-card: #192334;
+  --color-slate-border: #243248;
+  --color-brand-cyan: #38BDF8;
+}
+
+:root {
+  color-scheme: dark;
+  --bg-main: #161F2E;
+  --text-main: #F8FAFC;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg-main: #F8FAFC;
+  --text-main: #162032;
+}
+
+body {
+  background-color: var(--bg-main, #161F2E);
+  color: var(--text-main, #F8FAFC);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+}
+
+.chat-pattern {
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(148, 163, 184, 0.1) 0 2px, transparent 2.5px),
+    radial-gradient(circle at 75% 70%, rgba(148, 163, 184, 0.08) 0 2px, transparent 2.5px);
+  background-size: 46px 46px, 58px 58px;
+}
+
+.chat-widget .text-white {
+  color: #fff !important;
+}
+
+/* Keep the existing component palette readable when light mode is active. */
+:root[data-theme='light'] [class*='bg-[#'] {
+  background-color: #ffffff !important;
+}
+
+:root[data-theme='light'] [class*='bg-slate-900'],
+:root[data-theme='light'] [class*='bg-slate-800'],
+:root[data-theme='light'] [class*='bg-slate-950'] {
+  background-color: #eef2f7 !important;
+}
+
+:root[data-theme='light'] [class*='text-white'],
+:root[data-theme='light'] [class*='text-slate-100'],
+:root[data-theme='light'] [class*='text-slate-200'] {
+  color: #162032 !important;
+}
+
+:root[data-theme='light'] [class*='text-slate-300'],
+:root[data-theme='light'] [class*='text-slate-400'] {
+  color: #475569 !important;
+}
+
+:root[data-theme='light'] [class*='border-slate-'],
+:root[data-theme='light'] [class*='border-[#'] {
+  border-color: #cbd5e1 !important;
+}
+
+:root[data-theme='light'] .bg-transparent {
+  background-color: transparent !important;
+}
+
+:root[data-theme='light'] [class*='bg-slate-950\/0'] {
+  background-color: transparent !important;
+}
+
+:root[data-theme='light'] .group:hover [class*='bg-slate-950\/0'] {
+  background-color: rgb(15 23 42 / 0.15) !important;
+}
+
+/* Background Grid Pattern */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+}
+
+/* Screenshot Section Title Underline Bar */
+.section-heading-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5rem;
+}
+
+.section-heading-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+}
+
+.about-underline-sweep {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(103, 232, 249, 0.95), transparent);
+  transform: translateX(-140%);
+  animation: about-underline-sweep 2.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes about-underline-sweep {
+  0%, 18% {
+    transform: translateX(-140%);
+  }
+
+  82%, 100% {
+    transform: translateX(390%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-underline-sweep {
+    animation: none;
+  }
+}
+
+/* Custom font utility classes */
+.font-display {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+.font-calibre {
+  font-family: 'Calibre', 'Arial Narrow', 'Aptos Narrow', sans-serif;
+}
+
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Focus styles for keyboard accessibility */
+*:focus-visible {
+  outline: 2px solid #38BDF8;
+  outline-offset: 3px;
+}
+
